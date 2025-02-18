@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Social Work - Share, Watch & Connect</title>
     <style>
-        /* General Reset and Styling */
         * {
             margin: 0;
             padding: 0;
@@ -13,8 +12,8 @@
         }
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #F4F3EA; /* fragment_background */
-            color: #3E3D3D; /* text_background */
+            background-color: #F4F3EA;
+            color: #3E3D3D;
             overflow-x: hidden;
         }
         a {
@@ -22,10 +21,12 @@
             color: inherit;
         }
         header {
-            background: linear-gradient(135deg, #C0A2F6, #DDCCFB); /* Gradient */
-            color: #FFFFFF; /* white */
+            background: linear-gradient(135deg, #C0A2F6, #DDCCFB);
+            color: #FFFFFF;
             text-align: center;
             padding: 60px 20px;
+            position: relative;
+            overflow: hidden;
         }
         header h1 {
             font-size: 3.5rem;
@@ -44,46 +45,54 @@
             display: inline-block;
             font-size: 1.2rem;
             padding: 10px 20px;
-            margin: 0 10px;
-            background: #E3ED88; /* receive_color */
+            margin: 10px 10px;
+            background: #E3ED88;
             border-radius: 5px;
             font-weight: bold;
             transition: background 0.3s, color 0.3s;
         }
         nav a:hover {
-            background: #DDCCFB; /* send_color */
-            color: #3E3D3D; /* text_background */
+            background: #DDCCFB;
+            color: #3E3D3D;
         }
-
-        /* Hero Section */
         .hero {
             text-align: center;
-            padding: 50px 20px;
+            padding: 80px 20px;
             background: url('app_logo_new.png') no-repeat center/cover;
-            color: #FFFFFF; /* white */
+            color: #FFFFFF;
+            position: relative;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
         }
         .hero h2 {
             font-size: 3rem;
             color: white;
             margin-bottom: 20px;
             animation: slideDown 1.5s;
+            position: relative;
         }
         .hero button {
             padding: 15px 30px;
             font-size: 1.5rem;
-            background: #E3ED88; /* receive_color */
-            color: #3E3D3D; /* text_background */
+            background: #E3ED88;
+            color: #3E3D3D;
             border: none;
             border-radius: 5px;
             cursor: pointer;
             transition: transform 0.3s, background-color 0.3s;
+            position: relative;
         }
         .hero button:hover {
             transform: scale(1.1);
-            background-color: #DDCCFB; /* send_color */
+            background-color: #DDCCFB;
         }
-
-        /* Features Section */
         .container {
             max-width: 1200px;
             margin: 30px auto;
@@ -92,7 +101,7 @@
         .features h2 {
             text-align: center;
             margin-bottom: 30px;
-            color: #C0A2F6; /* tool_bar_color */
+            color: #C0A2F6;
         }
         .feature-grid {
             display: grid;
@@ -100,7 +109,7 @@
             gap: 20px;
         }
         .feature {
-            background: #FFFFFF; /* white */
+            background: #FFFFFF;
             border-radius: 10px;
             padding: 20px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
@@ -110,144 +119,93 @@
         .feature:hover {
             transform: translateY(-10px);
         }
-        .feature img {
-            width: 100px;
-            height: 100px;
-            margin-bottom: 10px;
+        .about, .how-it-works {
+            background: #FFFFFF;
+            padding: 40px 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
         }
-        .feature h3 {
-            font-size: 1.5rem;
-            margin-bottom: 10px;
+        .about h2, .how-it-works h2 {
+            text-align: center;
+            color: #C0A2F6;
+            margin-bottom: 20px;
         }
-        .feature p {
-            font-size: 1rem;
-            color: #3E3D3D;
+        .about p, .how-it-works p {
+            font-size: 1.2rem;
+            line-height: 1.6;
         }
-
-        /* Testimonials Section */
         .testimonials {
             margin: 40px 0;
             padding: 40px 20px;
-            background-color: #DDCCFB; /* send_color */
-            color: #3E3D3D; /* text_background */
+            background-color: #DDCCFB;
+            color: #3E3D3D;
             text-align: center;
             border-radius: 10px;
         }
-        .testimonial {
-            margin: 20px 0;
-        }
-        .testimonial p {
-            font-style: italic;
-            margin-bottom: 10px;
-        }
-
-        /* Footer */
         footer {
             text-align: center;
             padding: 20px;
-            background: #3E3D3D; /* text_background */
-            color: #FFFFFF; /* white */
+            background: #3E3D3D;
+            color: #FFFFFF;
         }
-
-        /* Animations */
         @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
         @keyframes slideDown {
-            from {
-                transform: translateY(-20px);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .hero h2 {
-                font-size: 2.5rem;
-            }
-            .hero button {
-                font-size: 1.2rem;
-            }
+            from { transform: translateY(-20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
         }
     </style>
 </head>
 <body>
-
 <header>
     <h1>Social Work</h1>
     <p>Where Creativity Meets Connection</p>
     <nav>
         <a href="#features">Features</a>
+        <a href="#about">About</a>
+        <a href="#how-it-works">How It Works</a>
         <a href="#testimonials">Reviews</a>
         <a href="SocialWork.apk">Download</a>
     </nav>
 </header>
-
 <section class="hero">
     <h2>Join the Community of Millions</h2>
     <button onclick="window.location.href='SocialWork.apk'">Download Now</button>
 </section>
-
 <div class="container">
-    <!-- Features Section -->
+    <section id="about" class="about">
+        <h2>About Social Work</h2>
+        <p>Social Work is an innovative, feature-packed social media app designed to enhance your online experience. Built with cutting-edge technologies like Android Studio, Java, Firebase, Google Drive, and SQLite, it’s fast, reliable, and user-friendly. Share your creative videos, connect with friends, and discover new content with ease!</p>
+    </section>
+    <section id="how-it-works" class="how-it-works">
+        <h2>How It Works</h2>
+        <p>Simply download Social Work, register or log in, and you're ready to start. Post videos, engage with your community through likes, dislikes, and downloads, chat in real-time, and enjoy full control over your content and privacy. Our app adapts to your network speed for smooth viewing and communication.</p>
+    </section>
     <section id="features" class="features">
         <h2>Why Choose Social Work?</h2>
         <div class="feature-grid">
-            <div class="feature">
-                <img src="post.png" alt="Post Videos">
-                <h3>Post Videos</h3>
-                <p>Express yourself by sharing videos with your followers.</p>
-            </div>
-            <div class="feature">
-                <img src="post.png" alt="Watch Videos">
-                <h3>Watch & Discover</h3>
-                <p>Explore entertaining and inspiring videos from around the globe.</p>
-            </div>
-            <div class="feature">
-                <img src="chat.png" alt="Chat">
-                <h3>Chat with Friends</h3>
-                <p>Stay connected with loved ones or meet new people.</p>
-            </div>
-            <div class="feature">
-                <img src="chat.png" alt="Community">
-                <h3>Join a Vibrant Community</h3>
-                <p>Be part of an ever-growing global family of creators and viewers.</p>
-            </div>
+            <div class="feature"><h3>Easy Registration & Login</h3></div>
+            <div class="feature"><h3>Post & Engage – Upload, Like, Dislike, & Download</h3></div>
+            <div class="feature"><h3>Profile Customization – Edit Name & Profile Picture</h3></div>
+            <div class="feature"><h3>Privacy & Control – Delete Posts Anytime</h3></div>
+            <div class="feature"><h3>Real-Time Chat – Instant Messaging</h3></div>
+            <div class="feature"><h3>Safety First – Block Unwanted Users</h3></div>
+            <div class="feature"><h3>Follow & Be Followed – Build Your Network</h3></div> <!-- New Feature -->
         </div>
     </section>
-
-    <!-- Testimonials Section -->
     <section id="testimonials" class="testimonials">
         <h2>What Users Are Saying</h2>
-        <div class="testimonial">
-            <p>"This app has completely changed how I connect with my friends!"</p>
-            <strong>- Alex</strong>
-        </div>
-        <div class="testimonial">
-            <p>"I love how easy it is to share my videos with the world."</p>
-            <strong>- Mia</strong>
-        </div>
-        <div class="testimonial">
-            <p>"The chat feature makes staying in touch so much fun!"</p>
-            <strong>- Liam</strong>
-        </div>
+        <p>"This app has completely changed how I connect with my friends!" - Alex</p>
+        <p>"I love how easy it is to share my videos with the world." - Mia</p>
+        <p>"The adaptive video quality feature is a game changer for me!" - John</p>
+        <p>"Following others has made it so easy to keep up with my favorite creators!" - Sarah</p> <!-- New Testimonial -->
     </section>
 </div>
-
-<footer id="download">
-    <p>&copy; 2024 Social Work. All rights reserved. <br>
-        <a href="SocialWork.apk" target="_blank" style="color:#E3ED88;">Download apk file</a>
-    </p>
+<footer>
+    <p>&copy; 2024 Social Work. All rights reserved. <a href="SocialWork.apk" style="color:#E3ED88;">Download apk file</a></p>
 </footer>
-
 </body>
 </html>
